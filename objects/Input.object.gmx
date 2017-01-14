@@ -33,6 +33,7 @@ select = false;
 start = false;
 button_b = false;
 button_a = false;
+
 </string>
           </argument>
         </arguments>
@@ -61,6 +62,7 @@ up = keyboard_check(vk_up);
 down = keyboard_check(vk_down);
 button_b = keyboard_check_pressed(ord('Z'));
 button_a = keyboard_check_pressed(ord('X'));
+start = keyboard_check_pressed(vk_enter);
 </string>
           </argument>
         </arguments>

@@ -1,0 +1,3 @@
+enter room with variable heart containers:
+	-nega heart containers make you lose heart containers when you walk through them
+	-stream of +heart containers shooting at you

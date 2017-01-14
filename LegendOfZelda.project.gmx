@@ -17,6 +17,9 @@
     </sprites>
     <sprites name="items">
       <sprite>sprites\spr_sword</sprite>
+      <sprite>sprites\spr_hearts</sprite>
+      <sprite>sprites\spr_heart_container</sprite>
+      <sprite>sprites\spr_heartbreak_container</sprite>
     </sprites>
     <sprites name="masks">
       <sprite>sprites\spr_wall_mask</sprite>
@@ -26,22 +29,47 @@
         <sprite>sprites\spr_octorok</sprite>
         <sprite>sprites\spr_projectile</sprite>
       </sprites>
+      <sprite>sprites\spr_enemy_death</sprite>
     </sprites>
   </sprites>
   <backgrounds name="background">
     <background>background\bg_overworld_green</background>
+    <background>background\bg_temp</background>
+    <background>background\bg_temp_menu</background>
+    <backgrounds name="TEMP">
+      <background>background\bg_title</background>
+      <background>background\bg_select_screen</background>
+      <background>background\bg_prologue</background>
+    </backgrounds>
   </backgrounds>
   <paths name="paths"/>
   <scripts name="scripts">
-    <script>scripts\check_input_all.gml</script>
     <script>scripts\init_game.gml</script>
-    <script>scripts\check_collision_obj.gml</script>
+    <scripts name="state_machine">
+      <script>scripts\state_init.gml</script>
+      <script>scripts\state_switch.gml</script>
+      <script>scripts\state_process.gml</script>
+    </scripts>
+    <scripts name="states">
+      <scripts name="game">
+        <script>scripts\state_game_title.gml</script>
+        <script>scripts\state_game_prologue.gml</script>
+        <script>scripts\state_game_select.gml</script>
+        <script>scripts\state_game_in_level.gml</script>
+        <script>scripts\state_game_menu_trans.gml</script>
+        <script>scripts\state_game_in_menu.gml</script>
+      </scripts>
+    </scripts>
+    <scripts name="utilities">
+      <script>scripts\check_input_all.gml</script>
+      <script>scripts\check_collision_obj.gml</script>
+      <script>scripts\move_toward.gml</script>
+    </scripts>
   </scripts>
   <objects name="objects">
     <object>objects\obj_game</object>
     <object>objects\obj_player</object>
     <object>objects\Input</object>
-    <object>objects\obj_sword</object>
     <objects name="walls">
       <object>objects\obj_solid</object>
       <object>objects\obj_wall_top</object>
@@ -51,10 +79,23 @@
         <object>objects\obj_octorok</object>
         <object>objects\obj_projectile</object>
       </objects>
+      <object>objects\obj_enemy_death</object>
+      <object>objects\obj_par_enemy</object>
     </objects>
+    <objects name="items">
+      <object>objects\obj_sword</object>
+      <object>objects\obj_heart</object>
+      <object>objects\obj_heart_container</object>
+      <object>objects\obj_heartbreak_container</object>
+    </objects>
+    <object>objects\obj_menu</object>
   </objects>
   <rooms name="rooms">
+    <room>rooms\rm_title</room>
+    <room>rooms\rm_prologue</room>
+    <room>rooms\rm_rooms</room>
     <room>rooms\rm_test</room>
+    <room>rooms\rm_select</room>
   </rooms>
   <help>
     <rtf>help.rtf</rtf>
