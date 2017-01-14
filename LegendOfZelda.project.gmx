@@ -4,7 +4,11 @@
     <Config>Configs\Default</Config>
   </Configs>
   <NewExtensions/>
-  <sounds name="sound"/>
+  <sounds name="sound">
+    <sounds name="music">
+      <sound>sound\snd_music_intro</sound>
+    </sounds>
+  </sounds>
   <sprites name="sprites">
     <sprite>sprites\spr_player</sprite>
     <sprites name="player">
@@ -30,6 +34,12 @@
         <sprite>sprites\spr_projectile</sprite>
       </sprites>
       <sprite>sprites\spr_enemy_death</sprite>
+    </sprites>
+    <sprites name="title">
+      <sprite>sprites\spr_title</sprite>
+      <sprite>sprites\spr_waterfall</sprite>
+      <sprite>sprites\spr_waterfall_waves</sprite>
+      <sprite>sprites\spr_prologue_screen</sprite>
     </sprites>
   </sprites>
   <backgrounds name="background">
@@ -68,7 +78,9 @@
   </scripts>
   <objects name="objects">
     <object>objects\obj_game</object>
+    <object>objects\obj_menu</object>
     <object>objects\obj_player</object>
+    <object>objects\obj_sword</object>
     <object>objects\Input</object>
     <objects name="walls">
       <object>objects\obj_solid</object>
@@ -83,12 +95,16 @@
       <object>objects\obj_par_enemy</object>
     </objects>
     <objects name="items">
-      <object>objects\obj_sword</object>
       <object>objects\obj_heart</object>
       <object>objects\obj_heart_container</object>
       <object>objects\obj_heartbreak_container</object>
     </objects>
-    <object>objects\obj_menu</object>
+    <objects name="title">
+      <object>objects\obj_title</object>
+      <object>objects\obj_waterfall</object>
+      <object>objects\obj_waterfall_waves</object>
+      <object>objects\obj_prologue_screen</object>
+    </objects>
   </objects>
   <rooms name="rooms">
     <room>rooms\rm_title</room>
