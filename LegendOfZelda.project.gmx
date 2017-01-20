@@ -10,7 +10,6 @@
     </sounds>
   </sounds>
   <sprites name="sprites">
-    <sprite>sprites\spr_player</sprite>
     <sprites name="player">
       <sprite>sprites\spr_player_up</sprite>
       <sprite>sprites\spr_player_down</sprite>
@@ -26,7 +25,9 @@
       <sprite>sprites\spr_heartbreak_container</sprite>
     </sprites>
     <sprites name="masks">
+      <sprite>sprites\spr_player</sprite>
       <sprite>sprites\spr_wall_mask</sprite>
+      <sprite>sprites\spr_warp_tile</sprite>
     </sprites>
     <sprites name="enemies">
       <sprites name="overworld">
@@ -75,13 +76,10 @@
       <script>scripts\check_collision_obj.gml</script>
       <script>scripts\move_toward.gml</script>
     </scripts>
+    <script>scripts\align_to_grid.gml</script>
   </scripts>
   <objects name="objects">
-    <object>objects\obj_game</object>
-    <object>objects\obj_menu</object>
     <object>objects\obj_player</object>
-    <object>objects\obj_sword</object>
-    <object>objects\Input</object>
     <objects name="walls">
       <object>objects\obj_solid</object>
       <object>objects\obj_wall_top</object>
@@ -98,12 +96,19 @@
       <object>objects\obj_heart</object>
       <object>objects\obj_heart_container</object>
       <object>objects\obj_heartbreak_container</object>
+      <object>objects\obj_sword</object>
     </objects>
     <objects name="title">
       <object>objects\obj_title</object>
       <object>objects\obj_waterfall</object>
       <object>objects\obj_waterfall_waves</object>
       <object>objects\obj_prologue_screen</object>
+    </objects>
+    <objects name="system">
+      <object>objects\obj_menu</object>
+      <object>objects\obj_game</object>
+      <object>objects\Input</object>
+      <object>objects\obj_room_warp</object>
     </objects>
   </objects>
   <rooms name="rooms">
@@ -112,6 +117,8 @@
     <room>rooms\rm_rooms</room>
     <room>rooms\rm_test</room>
     <room>rooms\rm_select</room>
+    <room>rooms\rm_Test1</room>
+    <room>rooms\rm_Test2</room>
   </rooms>
   <help>
     <rtf>help.rtf</rtf>

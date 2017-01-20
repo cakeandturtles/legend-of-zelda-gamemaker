@@ -4,7 +4,7 @@
   <solid>0</solid>
   <visible>-1</visible>
   <depth>0</depth>
-  <persistent>0</persistent>
+  <persistent>-1</persistent>
   <parentName>&lt;undefined&gt;</parentName>
   <maskName>&lt;undefined&gt;</maskName>
   <events>
@@ -124,7 +124,7 @@ switch (state) {
         sprite_index = sprite_walk;
         image_xscale = 1;
         
-        vx = 0;
+        vx = align_to_grid(x, 8);
         vy = -1 * player_speed;
         
         check_input_all();
@@ -138,7 +138,7 @@ switch (state) {
         sprite_index = sprite_walk;
         image_xscale = 1;
         
-        vx = 0;
+        vx = align_to_grid(x, 8);
         vy = player_speed;
         
         check_input_all();
@@ -154,7 +154,7 @@ switch (state) {
         image_xscale = 1;
         
         vx = -1 * player_speed;
-        vy = 0;   
+        vy = align_to_grid(y, 8);   
         
         check_input_all();
         break;
@@ -169,7 +169,7 @@ switch (state) {
         image_xscale = -1;
         
         vx = player_speed;
-        vy = 0; 
+        vy = align_to_grid(y, 8); 
         
         check_input_all();
         break; 
@@ -201,6 +201,69 @@ check_collision_obj(vx, vy, obj_solid);
 if (iframes &gt; 0) {
     iframes--;
 }
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// check collision with enemy
+
+// use sprite collision mask to check for enemy collisions!
+mask_index = sprite_index;
+
+var enemy = instance_place(x, y, obj_par_enemy);
+
+if (enemy != noone) {
+    // collide with enemy
+    if (iframes == 0) {
+        iframes = 30;
+        hp -= enemy.damage;
+    }
+}
+
+// switch back to 16x16 mask for solid collision
+mask_index = spr_player;
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="4" ename="obj_room_warp">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>room_goto(other.room_dest);
+x = other.player_target_x;
+y = other.player_target_y;
+
 </string>
           </argument>
         </arguments>
@@ -304,12 +367,7 @@ with (other) {
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>/// collide with enemy
-if (iframes == 0) {
-    iframes = 30;
-    hp -= other.damage;
-}
-</string>
+            <string></string>
           </argument>
         </arguments>
       </action>
@@ -331,10 +389,24 @@ if (iframes == 0) {
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (iframes &gt; 0 &amp;&amp; iframes mod 3 == 0) {
+            <string>/// draw player
+
+if (iframes &gt; 0 &amp;&amp; iframes mod 3 == 0) {
     // blinking iframes
 } else {
     draw_self();
+}
+
+if (global.debug) {
+    // use sprite collision mask to check for enemy collisions!
+    mask_index = sprite_index;
+    draw_set_color(c_blue);
+    draw_rectangle(bbox_left, bbox_top, bbox_right, bbox_bottom, true);
+    
+    // switch back to 16x16 mask for solid collision
+    mask_index = spr_player;
+    draw_set_color(c_fuchsia);
+    draw_rectangle(bbox_left, bbox_top, bbox_right, bbox_bottom, true);
 }
 </string>
           </argument>

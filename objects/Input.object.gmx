@@ -56,13 +56,28 @@ button_a = false;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>left = keyboard_check(vk_left);
+            <string>/// check controls
+
+left = keyboard_check(vk_left);
 right = keyboard_check(vk_right);
 up = keyboard_check(vk_up);
 down = keyboard_check(vk_down);
 button_b = keyboard_check_pressed(ord('Z'));
 button_a = keyboard_check_pressed(ord('X'));
 start = keyboard_check_pressed(vk_enter);
+select = keyboard_check_pressed(vk_shift);
+
+// allow both keyboard or gamepad to be used
+if (global.gamepad) {
+    left = left || gamepad_button_check(0, gp_padl);
+    right = right || gamepad_button_check(0, gp_padr);
+    up = up || gamepad_button_check(0, gp_padu);
+    down = down || gamepad_button_check(0, gp_padd);
+    button_b =  button_b || gamepad_button_check_pressed(0, gp_face3);
+    button_a = button_a || gamepad_button_check_pressed(0, gp_face1);
+    start = start || gamepad_button_check_pressed(0, gp_start);
+    select = select || gamepad_button_check_pressed(0, gp_select);
+}
 </string>
           </argument>
         </arguments>
