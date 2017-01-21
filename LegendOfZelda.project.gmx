@@ -17,6 +17,11 @@
       <sprite>sprites\spr_player_attack_side</sprite>
       <sprite>sprites\spr_player_attack_down</sprite>
       <sprite>sprites\spr_player_attack_up</sprite>
+      <sprites name="hurt">
+        <sprite>sprites\spr_player_up_hurt</sprite>
+        <sprite>sprites\spr_player_down_hurt</sprite>
+        <sprite>sprites\spr_player_side_hurt</sprite>
+      </sprites>
     </sprites>
     <sprites name="items">
       <sprite>sprites\spr_sword</sprite>
@@ -47,6 +52,7 @@
       <sprite>sprites\spr_waterfall_waves</sprite>
       <sprite>sprites\spr_prologue_screen</sprite>
     </sprites>
+    <sprite>sprites\spr_wizard_npc</sprite>
   </sprites>
   <backgrounds name="background">
     <background>background\bg_overworld_green</background>
@@ -119,6 +125,7 @@
       <object>objects\Input</object>
       <object>objects\obj_room_warp</object>
     </objects>
+    <object>objects\obj_wizard_npc</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\rm_title</room>

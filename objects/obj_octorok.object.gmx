@@ -151,6 +151,15 @@ if (check_collision_obj(vx, vy, obj_solid)) {
     facing = choose(enum_facing.up, enum_facing.right, enum_facing.down, 
                 enum_facing.left);
     image_angle = facing - 90;
+} else {
+    // make octorok "flat" [i.e. collide at bottom of solid objects as well]
+    y -= 8;
+    if (check_collision_obj(vx, vy, obj_solid)) {
+        facing = choose(enum_facing.up, enum_facing.right, enum_facing.down, 
+                enum_facing.left);
+        image_angle = facing - 90;
+    }
+    y += 8;
 }
 </string>
           </argument>

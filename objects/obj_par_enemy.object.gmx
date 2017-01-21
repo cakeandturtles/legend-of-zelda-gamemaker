@@ -36,7 +36,7 @@ iframes = 0;
 iframes_max = 30;
 knockback_timer = 0;
 knockback_direction = 90;
-knockback_speed = 3;
+knockback_speed = 2;
 
 normal_sprite = spr_octorok;
 normal_sprite_speed = 0.2;

@@ -26,6 +26,7 @@
           <argument>
             <kind>1</kind>
             <string>/// init variables
+enemy = noone;
 vx = 0;
 vy = 0;
 player_speed = 1.8;
@@ -34,7 +35,7 @@ state = "IDLE";
 facing = 0; // 0 = up, 1 = right, 2 = down, 3 = left (clockwise from up)
 
 knockback_timer = 0;
-knockback_speed = 3;
+knockback_speed = 5;
 
 updateRoomCoords();
 
@@ -71,7 +72,7 @@ sprite_attack = spr_player_attack_up;
             <kind>1</kind>
             <string>/// player states
 anim_speed = 0.2;
-if (knockback_timer &gt; 0) {
+if (knockback_timer &gt; 0) { 
     switch (knockback_direction) {
         case 90: // up
             vx = 0; 
@@ -147,11 +148,12 @@ if (knockback_timer &gt; 0) {
             facing = 0;
             image_speed = anim_speed;
             sprite_walk = spr_player_up;
+            sprite_hurt = spr_player_up_hurt;
             sprite_attack = spr_player_attack_up;
             sprite_index = sprite_walk;
             image_xscale = 1;
             
-            vx = align_to_grid(x, 8);
+            vx = align_to_grid(x, 4);
             vy = -1 * player_speed;
             
             check_input_all();
@@ -161,11 +163,12 @@ if (knockback_timer &gt; 0) {
             facing = 2;
             image_speed = anim_speed;
             sprite_walk = spr_player_down;
+            sprite_hurt = spr_player_down_hurt;
             sprite_attack = spr_player_attack_down;
             sprite_index = sprite_walk;
             image_xscale = 1;
             
-            vx = align_to_grid(x, 8);
+            vx = align_to_grid(x, 4);
             vy = player_speed;
             
             check_input_all();
@@ -175,13 +178,14 @@ if (knockback_timer &gt; 0) {
             facing = 3;
             image_speed = anim_speed;
             sprite_walk = spr_player_side;
+            sprite_hurt = spr_player_side_hurt;
             sprite_attack = spr_player_attack_side;
             sprite_index = sprite_walk;
             
             image_xscale = 1;
             
             vx = -1 * player_speed;
-            vy = align_to_grid(y, 8);   
+            vy = align_to_grid(y, 4);   
             
             check_input_all();
             break;
@@ -190,18 +194,24 @@ if (knockback_timer &gt; 0) {
             facing = 1;
             image_speed = anim_speed;
             sprite_walk = spr_player_side;
+            sprite_hurt = spr_player_side_hurt;
             sprite_attack = spr_player_attack_side;
             sprite_index = sprite_walk;
             
             image_xscale = -1;
             
             vx = player_speed;
-            vy = align_to_grid(y, 8); 
+            vy = align_to_grid(y, 4); 
             
             check_input_all();
             break; 
         }
     }
+}
+
+if (iframes &gt; 0) {
+    sprite_index = sprite_hurt;
+    image_speed = anim_speed;
 }
 
 check_collision_obj(vx, vy, obj_solid);
@@ -254,22 +264,23 @@ if (iframes &gt; 0) {
 // use sprite collision mask to check for enemy collisions!
 mask_index = sprite_index;
 
-var enemy = instance_place(x, y, obj_par_enemy);
+enemy = instance_place(x, y, obj_par_enemy);
 
 if (enemy != noone) {
     // collide with enemy
     if (iframes == 0) {
-        iframes = 30;
+        iframes = 60;
         hp -= enemy.damage;
         
-        knockback_timer = 10;
-        // player and enemy are more vertically aligned
-        if (other.x - x &gt; other.y - y) {
-            if (other.y &gt; y)
+        knockback_timer = 5;
+        if (abs(enemy.x - x) &lt; abs(enemy.y - y)) {
+            // player and enemy are more vertically aligned
+            if (enemy.y &gt; y)
                 knockback_direction = enum_facing.up;
             else knockback_direction = enum_facing.down;
         } else {
-            if (other.x &gt; x)
+            // they're more horizontally aligned
+            if (enemy.x &gt; x)
                 knockback_direction = enum_facing.left;
             else knockback_direction = enum_facing.right;
         }
@@ -449,11 +460,7 @@ with (other) {
             <kind>1</kind>
             <string>/// draw player
 
-if (iframes &gt; 0 &amp;&amp; iframes mod 3 == 0) {
-    // blinking iframes
-} else {
-    draw_self();
-}
+draw_self();
 
 if (global.debug) {
     // use sprite collision mask to check for enemy collisions!
