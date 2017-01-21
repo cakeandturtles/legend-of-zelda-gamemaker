@@ -25,9 +25,23 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>hp = 0;
+            <string>active = false;
+
+hp = 0;
 damage = 0;
+facing = enum_facing.up;
+
+
 iframes = 0;
+iframes_max = 30;
+knockback_timer = 0;
+knockback_direction = 90;
+knockback_speed = 3;
+
+normal_sprite = spr_octorok;
+normal_sprite_speed = 0.2;
+hurt_sprite = spr_octorok_hurt;
+hurt_sprite_speed = 0.3;
 </string>
           </argument>
         </arguments>
@@ -73,8 +87,21 @@ iframes = 0;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (iframes &gt; 0) {
+            <string>/// stop execution if not in same room as player
+updateRoomCoords();
+active = true;
+if (room_x != obj_player.room_x || room_y != obj_player.room_y) {
+    active = false;
+}
+
+if (!active) exit;
+
+if (iframes &gt; 0) {
     iframes--;
+}
+
+if (knockback_timer &gt; 0) {
+    knockback_timer--;
 }
 
 if (hp &lt;= 0) instance_destroy();
@@ -100,9 +127,16 @@ if (hp &lt;= 0) instance_destroy();
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (iframes == 0) {
-    iframes = 30;
+            <string>/// take damage and knockback
+if (iframes == 0) {
+    iframes = iframes_max;
     hp -= other.damage;
+    
+    if (hp &gt; 0) {
+        // set motion direction same direction of sword image angle
+        knockback_direction = (obj_sword.image_angle + 90) mod 360;
+        knockback_timer = 10;
+    }
 }
 </string>
           </argument>
@@ -126,11 +160,16 @@ if (hp &lt;= 0) instance_destroy();
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (iframes &gt; 0 &amp;&amp; iframes mod 3 == 0) {
+            <string>if (iframes &gt; 0) {
     // blinking invincibility   
+    sprite_index = hurt_sprite;
+    image_speed = hurt_sprite_speed;
 } else {
-    draw_self();
+    // normal
+    sprite_index = normal_sprite;
+    image_speed = normal_sprite_speed;
 }
+draw_self();
 
 if (global.debug) {
     draw_set_color(c_red);

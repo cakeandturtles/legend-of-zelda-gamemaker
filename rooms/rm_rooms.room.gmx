@@ -53,8 +53,6 @@
   <instances>
     <instance objName="obj_player" x="368" y="256" name="inst_8B8CAE0B" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_menu" x="944" y="112" name="inst_73A75B54" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="obj_octorok" x="400" y="224" name="inst_0F78D650" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="obj_octorok" x="416" y="272" name="inst_70A4310F" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_heart_container" x="336" y="448" name="inst_5D799B0D" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_heart_container" x="368" y="448" name="inst_7A68C8B0" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_heart_container" x="400" y="448" name="inst_707CF7AA" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
@@ -156,6 +154,8 @@
     <instance objName="obj_wall_top" x="304" y="176" name="inst_3646C0AC" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_wall_top" x="288" y="176" name="inst_A59B17AF" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_wall_top" x="272" y="176" name="inst_26E0B2AB" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_enemy_spawn" x="384" y="288" name="inst_FBF1828D" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_enemy_spawn" x="464" y="208" name="inst_D3E927F2" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
   </instances>
   <tiles>
     <tile bgName="bg_temp_menu" x="768" y="0" w="256" h="232" xo="0" yo="0" id="10000259" name="inst_93D40445" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>

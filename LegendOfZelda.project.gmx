@@ -32,9 +32,14 @@
     <sprites name="enemies">
       <sprites name="overworld">
         <sprite>sprites\spr_octorok</sprite>
+        <sprite>sprites\spr_octorok_blue</sprite>
+        <sprite>sprites\spr_octorok_green</sprite>
+        <sprite>sprites\spr_octorok_black</sprite>
+        <sprite>sprites\spr_octorok_hurt</sprite>
         <sprite>sprites\spr_projectile</sprite>
       </sprites>
       <sprite>sprites\spr_enemy_death</sprite>
+      <sprite>sprites\spr_enemy_spawn</sprite>
     </sprites>
     <sprites name="title">
       <sprite>sprites\spr_title</sprite>
@@ -75,8 +80,9 @@
       <script>scripts\check_input_all.gml</script>
       <script>scripts\check_collision_obj.gml</script>
       <script>scripts\move_toward.gml</script>
+      <script>scripts\align_to_grid.gml</script>
+      <script>scripts\updateRoomCoords.gml</script>
     </scripts>
-    <script>scripts\align_to_grid.gml</script>
   </scripts>
   <objects name="objects">
     <object>objects\obj_player</object>
@@ -86,11 +92,14 @@
     </objects>
     <objects name="enemies">
       <objects name="overworld">
+        <object>objects\obj_octorok_blue</object>
         <object>objects\obj_octorok</object>
+        <object>objects\obj_octorok_manic</object>
         <object>objects\obj_projectile</object>
       </objects>
       <object>objects\obj_enemy_death</object>
       <object>objects\obj_par_enemy</object>
+      <object>objects\obj_enemy_spawn</object>
     </objects>
     <objects name="items">
       <object>objects\obj_heart</object>
